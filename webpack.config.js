@@ -3,21 +3,28 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 
 const htmlPlugin = new HtmlWebPackPlugin({
-    template: path.join(__dirname, '/src/index.html'),
+    template: path.join(__dirname, 'index.html'),
     filename: 'index.html'
 })
 
 module.exports = {
-    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    devServer: {
+        contentBase: './dist'
+    },
     plugins: [
         htmlPlugin
     ],
     module: {
         rules: [{
-                test: /\.js|jsx$/,
-                use: 'babel-loader',
-                exclude: /node_modules/
-            },
+            test: /\.js|jsx$/,
+            use: 'babel-loader',
+            exclude: /node_modules/
+        },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader?modules']
@@ -28,7 +35,7 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        extensions: ['.css']
-    }
+    // resolve: {
+    //     extensions: ['.js', '.jsx','.css']
+    // }
 }
