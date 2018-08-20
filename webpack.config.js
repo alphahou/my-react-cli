@@ -11,7 +11,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.join(__dirname, 'dist')
     },
     devServer: {
         contentBase: './dist'
@@ -35,7 +35,7 @@ module.exports = {
             }
         ]
     },
-    // resolve: {
-    //     extensions: ['.js', '.jsx','.css']
-    // }
+    resolve: {
+        extensions: ['.js', '.jsx','.css']
+    }
 }
